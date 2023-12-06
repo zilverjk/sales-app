@@ -1,0 +1,207 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        BigInt    @id @default(autoincrement())
+  username  String    @unique
+  name      String
+  lastname  String
+  password  String
+  role      Role      @relation(fields: [roleId], references: [id])
+  avatar    String?
+  active    Boolean   @default(true)
+  status    Boolean   @default(true)
+  createdBy String
+  createdAt BigInt
+  updatedBy String
+  updatedAt BigInt
+  roleId    BigInt
+  Key       Key[]
+  Session   Session[]
+
+  @@index([username])
+}
+
+model Session {
+  id            String @id @unique
+  activeExpires BigInt
+  idleExpires   BigInt
+  user          User   @relation(fields: [userId], references: [id])
+  userId        BigInt
+
+  @@index([userId])
+}
+
+model Key {
+  id             String  @id @unique
+  hashedPassword String?
+  user           User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         BigInt
+
+  @@index([userId])
+}
+
+model Role {
+  id          BigInt  @id @default(autoincrement())
+  name        String  @unique
+  permissions Json
+  status      Boolean @default(true)
+  createdBy   String
+  createdAt   BigInt
+  updatedBy   String
+  updatedAt   BigInt
+  User        User[]
+}
+
+model IdentityType {
+  id        BigInt     @id @default(autoincrement())
+  key       String     @unique
+  name      String
+  status    Boolean    @default(true)
+  createdBy String
+  createdAt BigInt
+  updatedBy String
+  updatedAt BigInt
+  Customer  Customer[]
+  Company   Company[]
+  Person    Person[]
+}
+
+model Person {
+  id             BigInt       @id @default(autoincrement())
+  identityType   IdentityType @relation(fields: [identityTypeId], references: [id])
+  identityNumber String       @unique
+  name           String
+  address        String?
+  email          String?
+  phone          String?
+  status         Boolean      @default(true)
+  createdBy      String
+  createdAt      BigInt
+  updatedBy      String
+  updatedAt      BigInt
+  identityTypeId BigInt
+  Customer       Customer[]
+  Company        Company[]
+  Supplier       Supplier[]
+
+  @@index([identityTypeId, identityNumber])
+}
+
+model Customer {
+  id             BigInt       @id @default(autoincrement())
+  person         Person       @relation(fields: [personId], references: [id])
+  active         Boolean      @default(true)
+  status         Boolean      @default(true)
+  identityTypeId BigInt
+  IdentityType   IdentityType @relation(fields: [identityTypeId], references: [id])
+  personId       BigInt
+  createdBy      String
+  createdAt      BigInt
+  updatedBy      String
+  updatedAt      BigInt
+  Quotation      Quotation[]
+}
+
+model Company {
+  id             BigInt       @id @default(autoincrement())
+  person         Person       @relation(fields: [personId], references: [id])
+  tradeName      String
+  active         Boolean      @default(true)
+  status         Boolean      @default(true)
+  createdBy      String
+  createdAt      BigInt
+  updatedBy      String
+  updatedAt      BigInt
+  identityTypeId BigInt
+  IdentityType   IdentityType @relation(fields: [identityTypeId], references: [id])
+  personId       BigInt
+}
+
+model Store {
+  id        BigInt      @id @default(autoincrement())
+  key       String      @unique
+  name      String
+  address   String?
+  email     String?
+  phone     String?
+  active    Boolean     @default(true)
+  status    Boolean     @default(true)
+  createdBy String
+  createdAt BigInt
+  updatedBy String
+  updatedAt BigInt
+  Quotation Quotation[]
+}
+
+model Supplier {
+  id        BigInt    @id @default(autoincrement())
+  person    Person    @relation(fields: [personId], references: [id])
+  active    Boolean   @default(true)
+  status    Boolean   @default(true)
+  createdBy String
+  createdAt BigInt
+  updatedBy String
+  updatedAt BigInt
+  personId  BigInt
+  Product   Product[]
+}
+
+model Product {
+  id          BigInt   @id @default(autoincrement())
+  supplier    Supplier @relation(fields: [supplierId], references: [id])
+  key         String   @unique
+  name        String
+  description String?
+  active      Boolean  @default(true)
+  status      Boolean  @default(true)
+  createdBy   String
+  createdAt   BigInt
+  updatedBy   String
+  updatedAt   BigInt
+  supplierId  BigInt
+}
+
+model PriceList {
+  id        BigInt  @id @default(autoincrement())
+  key       String  @unique
+  name      String
+  details   Json
+  active    Boolean @default(true)
+  status    Boolean @default(true)
+  createdBy String
+  createdAt BigInt
+  updatedBy String
+  updatedAt BigInt
+}
+
+model Quotation {
+  id          BigInt   @id @default(autoincrement())
+  serial      String   @db.Char(4)
+  correlative String
+  customer    Customer @relation(fields: [customerId], references: [id])
+  store       Store    @relation(fields: [storeId], references: [id])
+  date        BigInt
+  frozen      Boolean  @default(false)
+  active      Boolean  @default(true)
+  status      Boolean  @default(true)
+  details     Json
+  createdBy   String
+  createdAt   BigInt
+  updatedBy   String
+  updatedAt   BigInt
+  customerId  BigInt
+  storeId     BigInt
+
+  @@index([serial, correlative])
+  @@index([customerId, date])
+}
