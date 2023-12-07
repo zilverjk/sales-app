@@ -18,13 +18,8 @@ export const actions: Actions = {
 			string
 		>;
 
-		// if (!username || !password) {
-		// 	console.log('paso aqui 1');
-		// 	return fail(400, { message: 'Credenciales inválidas' });
-		// }
-
 		try {
-			const key = await auth.useKey('username', username.toUpperCase(), password.toUpperCase());
+			const key = await auth.useKey('username', username, password);
 
 			const session = await auth.createSession({
 				userId: key.userId,

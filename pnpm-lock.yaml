@@ -1,11 +1,16 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@floating-ui/dom': ^1.5.3
   '@lucia-auth/adapter-prisma': ^3.0.2
   '@lucia-auth/adapter-session-redis': ^2.1.1
+  '@preline/select': ^2.0.1
   '@prisma/client': ^5.6.0
+  '@skeletonlabs/skeleton': ^2.5.1
+  '@skeletonlabs/tw-plugin': ^0.2.4
   '@sveltejs/adapter-auto': ^2.0.0
   '@sveltejs/kit': ^1.27.4
+  '@tailwindcss/forms': ^0.5.7
   '@types/luxon': ^3.3.6
   '@types/node': ^20.10.2
   '@typescript-eslint/eslint-plugin': ^6.0.0
@@ -33,16 +38,21 @@ specifiers:
   vite: ^4.4.2
 
 dependencies:
+  '@floating-ui/dom': 1.5.3
   '@lucia-auth/adapter-prisma': 3.0.2_as5ghm5bhjv5ks4uguhadfjv3i
   '@lucia-auth/adapter-session-redis': 2.1.1_ioredis@5.3.2+lucia@2.7.4
+  '@preline/select': 2.0.1
   '@prisma/client': 5.6.0_prisma@5.6.0
   ioredis: 5.3.2
   lucia: 2.7.4
   luxon: 3.4.4
 
 devDependencies:
+  '@skeletonlabs/skeleton': 2.5.1_svelte@4.2.8
+  '@skeletonlabs/tw-plugin': 0.2.4_tailwindcss@3.3.5
   '@sveltejs/adapter-auto': 2.1.1_@sveltejs+kit@1.27.6
   '@sveltejs/kit': 1.27.6_svelte@4.2.8+vite@4.5.0
+  '@tailwindcss/forms': 0.5.7_tailwindcss@3.3.5
   '@types/luxon': 3.3.6
   '@types/node': 20.10.2
   '@typescript-eslint/eslint-plugin': 6.13.1_pxvisawvdf6aznirz3pqeakgqa
@@ -333,6 +343,23 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
+  /@floating-ui/core/1.5.2:
+    resolution: {integrity: sha512-Ii3MrfY/GAIN3OhXNzpCKaLxHQfJF9qvwq/kEJYdqDxeIHa01K8sldugal6TmeeXl+WMvhv9cnVzUTaFFJF09A==}
+    dependencies:
+      '@floating-ui/utils': 0.1.6
+    dev: false
+
+  /@floating-ui/dom/1.5.3:
+    resolution: {integrity: sha512-ClAbQnEqJAKCJOEbbLo5IUlZHkNszqhuxS4fHAVxRPXPya6Ysf2G8KypnYcOTpx6I8xcgF9bbHb6g/2KpbV8qA==}
+    dependencies:
+      '@floating-ui/core': 1.5.2
+      '@floating-ui/utils': 0.1.6
+    dev: false
+
+  /@floating-ui/utils/0.1.6:
+    resolution: {integrity: sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==}
+    dev: false
+
   /@humanwhocodes/config-array/0.11.13:
     resolution: {integrity: sha512-JSBDMiDKSzQVngfRjOdFXgFfklaXI4K9nLF49Auh21lmBWRLIK3+xTErTWD4KU54pb6coM6ESE7Awz/FNU3zgQ==}
     engines: {node: '>=10.10.0'}
@@ -448,6 +475,10 @@ packages:
     resolution: {integrity: sha512-C16M+IYz0rgRhWZdCmK+h58JMv8vijAA61gmz2rspCSwKwzBebpdcsiUmwrtJRdphuY30i6BSLEOP8ppbNLyLg==}
     dev: true
 
+  /@preline/select/2.0.1:
+    resolution: {integrity: sha512-XDBimxeHXF3V8qG8kwNSB8oMlC7lTeyBv8AaZyenyqCp5Eswb3FR1q18aPApk/Q0SW27Ssa5Yj8ort6hMPxYPA==}
+    dev: false
+
   /@prisma/client/5.6.0_prisma@5.6.0:
     resolution: {integrity: sha512-mUDefQFa1wWqk4+JhKPYq8BdVoFk9NFMBXUI8jAkBfQTtgx8WPx02U2HB/XbAz3GSUJpeJOKJQtNvaAIDs6sug==}
     engines: {node: '>=16.13'}
@@ -469,6 +500,23 @@ packages:
   /@prisma/engines/5.6.0:
     resolution: {integrity: sha512-Mt2q+GNJpU2vFn6kif24oRSBQv1KOkYaterQsi0k2/lA+dLvhRX6Lm26gon6PYHwUM8/h8KRgXIUMU0PCLB6bw==}
     requiresBuild: true
+
+  /@skeletonlabs/skeleton/2.5.1_svelte@4.2.8:
+    resolution: {integrity: sha512-llzzKr6PQV1MUsJybdo3Z0SaVwm00KDf8DKhlVTt3X3fbCjIbS9rK6sLzJKZO01L/cQYtAzdVXv9CxALtIuy0w==}
+    peerDependencies:
+      svelte: ^3.56.0 || ^4.0.0
+    dependencies:
+      esm-env: 1.0.0
+      svelte: 4.2.8
+    dev: true
+
+  /@skeletonlabs/tw-plugin/0.2.4_tailwindcss@3.3.5:
+    resolution: {integrity: sha512-DmOFMV6jhhvnub/TANB62nJJqxfMBby5Kxwe/Mn3DTxHuJLZj8B47Ta2K5sl/or2B8MaMfny8ocvPAzd6lrMtQ==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0'
+    dependencies:
+      tailwindcss: 3.3.5_ts-node@10.9.1
+    dev: true
 
   /@sveltejs/adapter-auto/2.1.1_@sveltejs+kit@1.27.6:
     resolution: {integrity: sha512-nzi6x/7/3Axh5VKQ8Eed3pYxastxoa06Y/bFhWb7h3Nu+nGRVxKAy3+hBJgmPCwWScy8n0TsstZjSVKfyrIHkg==}
@@ -541,6 +589,15 @@ packages:
       vitefu: 0.2.5_vite@4.5.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@tailwindcss/forms/0.5.7_tailwindcss@3.3.5:
+    resolution: {integrity: sha512-QE7X69iQI+ZXwldE+rzasvbJiyV/ju1FGHH0Qn2W3FKbuYtqp8LKcy6iSw79fVUT5/Vvf+0XgLCeYVG+UV6hOw==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
+    dependencies:
+      mini-svg-data-uri: 1.4.4
+      tailwindcss: 3.3.5_ts-node@10.9.1
     dev: true
 
   /@tsconfig/node10/1.0.9:
@@ -1637,6 +1694,11 @@ packages:
   /min-indent/1.0.1:
     resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==}
     engines: {node: '>=4'}
+    dev: true
+
+  /mini-svg-data-uri/1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
+    hasBin: true
     dev: true
 
   /minimatch/3.1.2:

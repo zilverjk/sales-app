@@ -29,6 +29,7 @@ model User {
   Session   Session[]
 
   @@index([username])
+  @@map("users")
 }
 
 model Session {
@@ -60,6 +61,8 @@ model Role {
   updatedBy   String
   updatedAt   BigInt
   User        User[]
+
+  @@map("roles")
 }
 
 model IdentityType {
@@ -74,6 +77,8 @@ model IdentityType {
   Customer  Customer[]
   Company   Company[]
   Person    Person[]
+
+  @@map("identity_types")
 }
 
 model Person {
@@ -95,6 +100,7 @@ model Person {
   Supplier       Supplier[]
 
   @@index([identityTypeId, identityNumber])
+  @@map("persons")
 }
 
 model Customer {
@@ -110,6 +116,8 @@ model Customer {
   updatedBy      String
   updatedAt      BigInt
   Quotation      Quotation[]
+
+  @@map("customers")
 }
 
 model Company {
@@ -125,6 +133,8 @@ model Company {
   identityTypeId BigInt
   IdentityType   IdentityType @relation(fields: [identityTypeId], references: [id])
   personId       BigInt
+
+  @@map("companies")
 }
 
 model Store {
@@ -141,6 +151,8 @@ model Store {
   updatedBy String
   updatedAt BigInt
   Quotation Quotation[]
+
+  @@map("stores")
 }
 
 model Supplier {
@@ -154,6 +166,8 @@ model Supplier {
   updatedAt BigInt
   personId  BigInt
   Product   Product[]
+
+  @@map("suppliers")
 }
 
 model Product {
@@ -169,6 +183,8 @@ model Product {
   updatedBy   String
   updatedAt   BigInt
   supplierId  BigInt
+
+  @@map("products")
 }
 
 model PriceList {
@@ -182,6 +198,8 @@ model PriceList {
   createdAt BigInt
   updatedBy String
   updatedAt BigInt
+
+  @@map("price_lists")
 }
 
 model Quotation {
@@ -204,4 +222,5 @@ model Quotation {
 
   @@index([serial, correlative])
   @@index([customerId, date])
+  @@map("quotations")
 }

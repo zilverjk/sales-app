@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import Alert from '$lib/components/alerts/alert.svelte';
+	import Alert from '$lib/components/alert.svelte';
 
 	export let form;
 

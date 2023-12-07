@@ -3,7 +3,6 @@ import { dev } from '$app/environment';
 import { sveltekit } from 'lucia/middleware';
 import { prisma } from '@lucia-auth/adapter-prisma';
 import prismaClient from './prisma';
-
 // const redisClient =
 // 	process.env.NODE_ENV === process.env.DEV_ENV
 // 		? new Redis()
